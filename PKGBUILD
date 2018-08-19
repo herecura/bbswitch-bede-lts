@@ -8,7 +8,7 @@ pkgver=0.8
 _extramodules=4.14-BEDE-LTS-external
 _current_linux_version=4.14.65
 _next_linux_version=4.15
-pkgrel=94
+pkgrel=95
 pkgdesc="Kernel module allowing to switch dedicated graphics card on Optimus laptops"
 arch=('x86_64')
 url="http://github.com/Bumblebee-Project/bbswitch"
@@ -36,5 +36,5 @@ package() {
   cd ${srcdir}/${_basename}-${pkgver}
    
   install -Dm644 bbswitch.ko "${pkgdir}"/usr/lib/modules/${_extramodules}/bbswitch.ko
-  gzip "${pkgdir}/usr/lib/modules/${_extramodules}/bbswitch.ko"                      
+  find "${pkgdir}" -name '*.ko' -exec xz {} +
 }
