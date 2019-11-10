@@ -8,7 +8,7 @@ pkgver=0.8
 _extramodules=4.19-BEDE-LTS-external
 _current_linux_version=4.19.83
 _next_linux_version=4.20
-pkgrel=192
+pkgrel=193
 pkgdesc="Kernel module allowing to switch dedicated graphics card on Optimus laptops"
 arch=('x86_64')
 url="http://github.com/Bumblebee-Project/bbswitch"
@@ -27,14 +27,13 @@ sha512sums=('11ab163931feb6c0e202d04c4552b848e999fedea9990390c26b28abdb4a69081cc
 build() {
   cd ${srcdir}/${_basename}-${pkgver}
 
-  _kernver="$(cat /usr/lib/modules/${_extramodules}/version)"
-
-  make KDIR=/lib/modules/${_kernver}/build
+  make KDIR=/usr/src/linux-bede-lts
 }
 
 package() {
   cd ${srcdir}/${_basename}-${pkgver}
    
-  install -Dm644 bbswitch.ko "${pkgdir}"/usr/lib/modules/${_extramodules}/bbswitch.ko
+  local extradir="/usr/lib/modules/$(</usr/src/linux-bede-lts/version)/extramodules"
+  install -Dm644 bbswitch.ko "${pkgdir}${extradir}/$pkgname/bbswitch.ko"
   find "${pkgdir}" -name '*.ko' -exec xz {} +
 }
