@@ -5,10 +5,10 @@
 pkgname=bbswitch-bede-lts
 _basename=bbswitch
 pkgver=0.8
-_extramodules=4.19-BEDE-LTS-external
-_current_linux_version=4.19.91
-_next_linux_version=4.20
-pkgrel=201
+_extramodules=5.4-BEDE-LTS-external
+_current_linux_version=5.4.6
+_next_linux_version=5.5
+pkgrel=202
 pkgdesc="Kernel module allowing to switch dedicated graphics card on Optimus laptops"
 arch=('x86_64')
 url="http://github.com/Bumblebee-Project/bbswitch"
